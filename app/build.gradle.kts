@@ -76,7 +76,7 @@ dependencies {
     implementation(libs.destinations.core)
     ksp(libs.destinations.ksp)
 
-    //Image
+    //Image-Glide
     implementation(libs.glide.compose)
 
     // Room
