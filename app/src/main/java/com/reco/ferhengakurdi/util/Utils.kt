@@ -10,6 +10,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.sp
 import org.jsoup.nodes.Element
 import org.jsoup.nodes.TextNode
 
@@ -28,7 +29,8 @@ fun AnnotatedString.Builder.ProcessElement(element: Element) {
             withStyle(
                 style = SpanStyle(
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = 12.sp
                 )
             ) {
                 append(element.text())
@@ -73,7 +75,7 @@ private fun calculate(a: Long, b: String): Long {
     var g = a
     for (c in 0..b.length - 2 step 3) {
         val d = b[c + 2]
-        val e = if ('a' <= d) (d - 87).toInt() else d.toString().toInt()
+        val e = if ('a' <= d) d.code - 87 else d.toString().toInt()
         val f = if ('+' == b[c + 1]) g.ushr(e) else g shl e
         g = if ('+' == b[c]) g + f and (Int.MAX_VALUE.toLong() * 2 + 1) else g xor f
     }
